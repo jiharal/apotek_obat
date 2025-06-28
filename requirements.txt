@@ -21,9 +21,5 @@ plotly>=5.15.0
 python-dotenv>=1.0.0
 python-dateutil>=2.8.0
 
-# For better text processing
-difflib
-re
-
-# Optional: For better performance
-numba>=0.57.0
+# Optional: For better performance (comment out if build issues)
+# numba>=0.57.0
