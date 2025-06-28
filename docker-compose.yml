@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  apotek-obat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apotek-obat-app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Persist uploaded PDF files
+      - ./pbf:/app/pbf
+      # Optional: mount additional data directory
+      - ./data:/app/data
+    environment:
+      # Streamlit configuration
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_FILE_WATCHER_TYPE=none
+      # Application configuration
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - apotek-network
+
+  # Optional: Add Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: apotek-obat-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro  # For SSL certificates
+    depends_on:
+      - apotek-obat
+    restart: unless-stopped
+    networks:
+      - apotek-network
+    profiles:
+      - production  # Only start with --profile production
+
+networks:
+  apotek-network:
+    driver: bridge
+
+volumes:
+  pdf_data:
+    driver: local

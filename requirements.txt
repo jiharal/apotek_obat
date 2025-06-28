@@ -1,0 +1,29 @@
+# Core Streamlit application
+streamlit>=1.28.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# PDF processing libraries
+PyPDF2>=3.0.0
+pdfplumber>=0.9.0
+tabula-py>=2.7.0
+
+# Excel/CSV export
+openpyxl>=3.1.0
+xlsxwriter>=3.0.0
+
+# Visualization
+plotly>=5.15.0
+
+# Utilities
+python-dotenv>=1.0.0
+python-dateutil>=2.8.0
+
+# For better text processing
+difflib
+re
+
+# Optional: For better performance
+numba>=0.57.0

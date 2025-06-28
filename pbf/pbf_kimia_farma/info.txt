@@ -1,0 +1,6 @@
+Folder untuk file PDF daftar harga dari Kimia Farma
+
+Format kolom yang umum digunakan:
+- NAMA BARANG
+- HNA+PPN  
+- STOK

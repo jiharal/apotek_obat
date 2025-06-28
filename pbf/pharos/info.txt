@@ -1,0 +1,6 @@
+Folder untuk file PDF daftar harga dari Pharos
+
+Format kolom yang umum digunakan:
+- NAMA OBAT
+- HARGA JADI
+- DISKON

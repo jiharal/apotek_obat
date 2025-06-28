@@ -1,0 +1,6 @@
+Folder untuk file PDF daftar harga dari Enseval
+
+Format kolom yang umum digunakan:
+- NAMA BRG
+- HRG+PPN
+- QTY
